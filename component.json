@@ -1,8 +1,0 @@
-{
-  "name": "angular-phonegap-push-notification",
-  "version": "0.0.1",
-  "main": "push.js",
-  "dependencies": {
-    "angular": "~1.0.5"
-  }
-}
