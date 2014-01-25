@@ -1,6 +1,6 @@
 {
   "name": "angular-phonegap-push-notification",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/PatrickHeneise/angular-phonegap-push-notification",
   "authors": [
     "Patrick Heneise <mail@patrickheneise.com>"
@@ -20,6 +20,10 @@
     "gcm",
     "apn"
   ],
+  "dependencies": {
+    "angular": "~1.0.5",
+    "angular-phonegap-ready": "~0.0.1"
+  },
   "license": "MIT",
   "ignore": [
     "**/.*",

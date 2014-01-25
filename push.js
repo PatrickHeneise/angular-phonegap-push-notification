@@ -1,28 +1,17 @@
 /*
- * angular-phonegap-push-notification v0.0.1
+ * angular-phonegap-push-notification v0.0.2
  * (c) 2014 Patrick Heneise, patrickheneise.com
  * License: MIT
  */
 
 'use strict';
 
-angular.module('phonegap', [])
+angular.module('phonegap',
+  ['btford.phonegap.ready'])
   .service('phone', function () {
     this.isAndroid = function () {
       var uagent = navigator.userAgent.toLowerCase();
       return uagent.search('android') > -1 ? true : false;
-    };
-  })
-
-  .factory('phonegapReady', function ($rootScope, $q) {
-    var loadingDeferred = $q.defer();
-    
-    document.addEventListener('deviceready', function () {
-      $rootScope.$apply(loadingDeferred.resolve);
-    });
-    
-    return function phonegapReady() {
-      return loadingDeferred.promise;
     };
   })
 
