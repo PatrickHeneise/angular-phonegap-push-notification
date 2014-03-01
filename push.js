@@ -1,13 +1,25 @@
 /*
- * angular-phonegap-push-notification v0.0.2
+ * angular-phonegap-push-notification v0.0.3
  * (c) 2014 Patrick Heneise, patrickheneise.com
  * License: MIT
  */
 
 'use strict';
 
-angular.module('phonegap',
-  ['btford.phonegap.ready'])
+angular.module('cordova', [])
+
+  .factory('cordovaReady', function ($rootScope, $q) {
+    var loadingDeferred = $q.defer();
+    
+    document.addEventListener('deviceready', function () {
+      $rootScope.$apply(loadingDeferred.resolve);
+    });
+    
+    return function cordovaReady() {
+      return loadingDeferred.promise;
+    };
+  })
+
   .service('phone', function () {
     this.isAndroid = function () {
       var uagent = navigator.userAgent.toLowerCase();
@@ -15,10 +27,10 @@ angular.module('phonegap',
     };
   })
 
-  .factory('push', function ($rootScope, phone, phonegapReady) {
+  .factory('push', function ($rootScope, phone, cordovaReady) {
     return {
       registerPush: function (fn) {
-        phonegapReady().then(function () {
+        cordovaReady().then(function () {
           var
             pushNotification = window.plugins.pushNotification,
             successHandler = function (result) {},
