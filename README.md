@@ -10,6 +10,12 @@ Bower component for iOS and Android Push Notifcation services. Check out [node-a
 4. Include the `push.js` script, and this script's dependencies are included in your app.
 5. Add `cordova` as a module dependency to your app.
 
+## Workflow after optaining the device_id
+
+1. send the device_id to an application server
+2. store the device_id on the application server
+3. send push notifications with the device_id/token
+
 ## Example
 
     var result = push.registerPush(function (result) {
