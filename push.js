@@ -8,11 +8,13 @@
 
 angular.module('cordova', [])
 
-  .factory('cordovaReady', function ($rootScope, $q) {
+  .factory('cordovaReady', function ($rootScope, $q, $timeout) {
     var loadingDeferred = $q.defer();
     
     document.addEventListener('deviceready', function () {
-      $rootScope.$apply(loadingDeferred.resolve);
+      $timeout(function() {
+        $rootScope.$apply(loadingDeferred.resolve);
+      });
     });
     
     return function cordovaReady() {
