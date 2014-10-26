@@ -10,13 +10,13 @@ angular.module('cordova', [])
 
   .factory('cordovaReady', function ($rootScope, $q, $timeout) {
     var loadingDeferred = $q.defer();
-    
+
     document.addEventListener('deviceready', function () {
       $timeout(function() {
         $rootScope.$apply(loadingDeferred.resolve);
       });
     });
-    
+
     return function cordovaReady() {
       return loadingDeferred.promise;
     };
@@ -45,7 +45,7 @@ angular.module('cordova', [])
               });
             };
 
-          app.onNotificationAPN = function (event) {
+          window.onNotificationAPN = function (event) {
             if (event.alert) {
               navigator.notification.alert(event.alert);
             }
@@ -60,7 +60,7 @@ angular.module('cordova', [])
             }
           };
 
-          app.onNotificationGCM = function (event) {
+          window.onNotificationGCM = function (event) {
             switch (event.event) {
               case 'registered':
                 if (event.regid.length > 0) {
@@ -94,7 +94,7 @@ angular.module('cordova', [])
           if (phone.isAndroid()) {
             pushNotification.register(successHandler, errorHandler, {
               'senderID': '{your_sender_id}',
-              'ecb': 'app.onNotificationGCM'
+              'ecb': 'window.onNotificationGCM'
             });
           } else {
             console.log('register ios');
@@ -102,7 +102,7 @@ angular.module('cordova', [])
               'badge': 'true',
               'sound': 'true',
               'alert': 'true',
-              'ecb': 'app.onNotificationAPN'
+              'ecb': 'window.onNotificationAPN'
             });
           }
         });
