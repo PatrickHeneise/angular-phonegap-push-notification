@@ -22,7 +22,7 @@
     "apn"
   ],
   "dependencies": {
-    "angular": "~1.0.5",
+    "angular": "~1.2.22",
     "angular-phonegap-ready": "~0.0.1"
   },
   "license": "MIT",
